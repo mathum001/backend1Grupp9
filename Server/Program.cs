@@ -8,6 +8,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Data.Common;
 
 namespace Server;
 
@@ -36,14 +37,7 @@ class Program
             server.Start();
             Console.WriteLine("Servern är igång och lyssnar på port " + port);
 
-            // Dictionary to map client commands to corresponding actions
-            Dictionary<string, Action<string>> commandActions = new Dictionary<string, Action<string>>()
-                {
-                    { "register", RegisterUser },
-                    { "login", LoginUser },
-                    { "send", SendMessage},
-                    { "sendPrivate",SendPrivateMessage},
-                };
+
 
             while (true)
             {
@@ -51,43 +45,10 @@ class Program
                 TcpClient client = server.AcceptTcpClient();
                 Console.WriteLine("En klient har anslutit.");
 
-                // Hämta klientens nätverksström
-                NetworkStream stream = client.GetStream();
+                //ny tråd för separata klienter
+                Thread clientThread = new Thread(HandleClient);
+                clientThread.Start(client);
 
-                // Buffer för att lagra inkommande data
-                byte[] buffer = new byte[1024];
-                int bytesRead = stream.Read(buffer, 0, buffer.Length);
-
-                // Konvertera inkommande data till en sträng
-                string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                Console.WriteLine("Meddelande från klienten: " + dataReceived);
-                string[] data = dataReceived.Split(" ");
-                string command = data[0];
-                string parameters = dataReceived.Substring(command.Length).Trim();
-
-                if (commandActions.ContainsKey(command))
-                {
-                    commandActions[command].Invoke(parameters);
-                }
-                else
-                {
-                    System.Console.WriteLine("Felaktigt kommando " + command);
-                }
-
-                foreach (string ord in data)
-                {
-                    System.Console.WriteLine(ord + ".");
-                }
-
-
-
-
-                // Skicka tillbaka det mottagna meddelandet till klienten
-                byte[] dataToSend = Encoding.ASCII.GetBytes(dataReceived);
-                stream.Write(dataToSend, 0, dataToSend.Length);
-
-                // Stäng anslutningen till klienten, ska det va med?
-                /*  client.Close(); */
             }
         }
         catch (Exception e)
@@ -102,7 +63,51 @@ class Program
     }
 
 
-    static void RegisterUser(string parameters)
+
+    static void HandleClient(object klient)
+    {
+        TcpClient client = (TcpClient)klient;
+        NetworkStream stream = client.GetStream();
+
+        // Hantera kommunikationen med klienten
+        while (client.Connected)
+        {
+            byte[] buffer = new byte[1024];
+            int bytesRead = stream.Read(buffer, 0, buffer.Length);
+            if (bytesRead == 0)
+            {
+                // Om inga bytes läses in, betyder det att klienten har kopplat från
+                Console.WriteLine("Klienten har kopplat från.");
+                break;
+            }
+            string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+            Console.WriteLine("Meddelande från klienten: " + dataReceived);
+
+            // Hantera inkommande meddelanden och skicka svar
+            string[] data = dataReceived.Split(" ");
+            string command = data[0];
+            string parameters = dataReceived.Substring(command.Length).Trim();
+
+            if (commandActions.ContainsKey(command))
+            {
+                commandActions[command].Invoke(parameters, stream);
+            }
+            else
+            {
+                System.Console.WriteLine("Felaktigt kommando " + command);
+            }
+
+
+            // Skicka tillbaka det mottagna meddelandet till klienten
+            byte[] dataToSend = Encoding.ASCII.GetBytes(dataReceived);
+            stream.Write(dataToSend, 0, dataToSend.Length);
+        }
+
+        // Stäng anslutningen när klienten kopplar från
+        client.Close();
+    }
+
+    static void RegisterUser(string parameters, NetworkStream stream)
     {
         System.Console.WriteLine("Du försökte göra en registrering" + parameters);
         string[] data = parameters.Split(" ");
@@ -144,21 +149,61 @@ class Program
     {
         collection.InsertOne(user);
         System.Console.WriteLine("Användare registrerad!");
-
-
     }
 
-    static void LoginUser(string parameters)
+    static void LoginUser(string parameters, NetworkStream stream)
     {
         System.Console.WriteLine("Du försökte logga in" + parameters);
+        string[] loginData = parameters.Split();
+        if (loginData.Length != 2)
+        {
+            System.Console.WriteLine("Felaktiga uppgifter"); //TODO: skicka medd till client om att det ej gick
+        }
 
+        string userName = loginData[0];
+        string passWord = loginData[1];
+        int loginId = Authenticate(userName, passWord);
+
+        if (loginId == 0)
+        {
+            System.Console.WriteLine("Felaktiga uppgifter"); //TODO: skicka medd till client om att det ej gick
+        }
+        else
+        {
+            //here i wanna give the client/stream the specific Id that i can later use to send private messages to
+            userStreams[userName] = stream;
+            string text = "Du loggades in!";
+            System.Console.WriteLine("Inloggning lyckades: " + stream + "-----" + userName);
+            byte[] dataToSend = Encoding.ASCII.GetBytes(text);
+            stream.Write(dataToSend, 0, dataToSend.Length);
+            string loginMessage = "User: " + userName + " har loggat in.";
+            SendMessage(loginMessage, stream);
+        }
 
     }
-    static void SendMessage(string parameters)
+
+    static int Authenticate(string userName, string passWord)
     {
+        int id = 0;
+        IMongoCollection<User> users = FetchMongoUser();
+        User correctLogin = users.Find(x => x.UserName == userName && x.Password == passWord).FirstOrDefault();
+        id = correctLogin.Id;
+        return id;
+    }
+
+    static void SendMessage(string message, NetworkStream senderStream)
+    {
+        foreach (var kvp in userStreams)
+        {
+            /*  if (kvp.Value != senderStream) */
+            {
+                byte[] dataToSend = Encoding.ASCII.GetBytes(message);
+                kvp.Value.Write(dataToSend, 0, dataToSend.Length);
+            }
+        }
 
     }
-    static void SendPrivateMessage(string parameters)
+    static void SendPrivateMessage(string parameters, NetworkStream stream)
     {
 
     }
@@ -190,6 +235,18 @@ class Program
 
         return collection;
     }
+
+    //Dictionary för commands
+    static Dictionary<string, Action<string, NetworkStream>> commandActions = new Dictionary<string, Action<string, NetworkStream>>()
+                {
+                    { "register", RegisterUser },
+                    { "login", LoginUser },
+                    { "send", SendMessage},
+                    { "sendPrivate",SendPrivateMessage},
+                };
+
+    //Dictionary för att servern ska hålla koll på vilken användare som är vilken
+    static Dictionary<string, NetworkStream> userStreams = new Dictionary<string, NetworkStream>();
 
 
 }

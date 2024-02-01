@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Client\\Client.csproj",
+      "projectUniqueName": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Client\\Client.csproj",
+      "projectPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Client\\Client.csproj",
       "packagesPath": "C:\\Users\\Matsjö\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Client\\obj\\",
+      "outputPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Matsjö\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Shared\\Shared.csproj"
+            "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj"
             }
           }
         }

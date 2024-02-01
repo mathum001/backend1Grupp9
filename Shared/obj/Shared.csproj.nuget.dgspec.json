@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Shared\\Shared.csproj": {}
+    "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Shared\\Shared.csproj": {
+    "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Shared\\Shared.csproj",
+        "projectUniqueName": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Shared\\Shared.csproj",
+        "projectPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj",
         "packagesPath": "C:\\Users\\Matsjö\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Shared\\obj\\",
+        "outputPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Matsjö\\AppData\\Roaming\\NuGet\\NuGet.Config",

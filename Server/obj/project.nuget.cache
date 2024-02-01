@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pjkBbXXw8pNAaOwN5EfUp6s0fGkN+75+LPLHbt3TXZ8jYYlVrnxtCfFNBcaaQnqkYLXP7nNmH9Klajld19LtwQ==",
+  "dgSpecHash": "T83N9ANRUAhYdliw488v2wk5UBhW8gT21VRq0lirHh40NMDK0rVLkpm7In3IQxIpf6CWlkAJl4Nz/W4TQZg2GQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Matsjö\\Documents\\backendutveckling-1\\Nytt Grupprojekt\\Server\\Server.csproj",
+  "projectFilePath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Matsjö\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Matsjö\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
