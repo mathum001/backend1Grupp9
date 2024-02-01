@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\backend1Grupp9\\Server\\Server.csproj": {}
+    "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\backend1Grupp9\\Server\\Server.csproj": {
+    "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\backend1Grupp9\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Users\\HP\\backend1Grupp9\\Server\\Server.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\backend1Grupp9\\Server\\obj\\",
+        "projectPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\Server.csproj",
+        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\HP\\backend1Grupp9\\Shared\\Shared.csproj": {
-                "projectPath": "C:\\Users\\HP\\backend1Grupp9\\Shared\\Shared.csproj"
+              "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj"
               }
             }
           }
@@ -67,17 +67,17 @@
         }
       }
     },
-    "C:\\Users\\HP\\backend1Grupp9\\Shared\\Shared.csproj": {
+    "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\backend1Grupp9\\Shared\\Shared.csproj",
+        "projectUniqueName": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Users\\HP\\backend1Grupp9\\Shared\\Shared.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\backend1Grupp9\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

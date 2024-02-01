@@ -1,62 +1,111 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
-using System.Diagnostics;
 
-namespace Client;
-class Program
+namespace Client
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello Client!");
-        StartClient();
-    }
-    static void StartClient()
-    {
-        try
+        static void Main(string[] args)
         {
-            // Skapa en TCP-klient och anslut till servern
-            TcpClient client = new TcpClient("127.0.0.1", 8080);
-            Console.WriteLine("Ansluten till servern.");
+            Console.WriteLine("Hello Client!");
+            StartClient();
+        }
 
-            // Hämta nätverksströmmen från klienten
-            NetworkStream stream = client.GetStream();
-
-
-            while (true)
+        static void StartClient()
+        {
+            try
             {
-                // Skicka ett meddelande till servern
-                System.Console.WriteLine("Vilket meddelande vill du skicka?");
-                string pass = Console.ReadLine();
-                byte[] dataToSend = Encoding.ASCII.GetBytes(pass);
-                stream.Write(dataToSend, 0, dataToSend.Length);
-                Console.WriteLine("Skickat meddelande till servern: " + pass);
+                TcpClient client = new TcpClient("127.0.0.1", 8080);
+                Console.WriteLine("Connected to the server.");
 
-                // Läs inkommande data från servern
-                byte[] buffer = new byte[1024];
-                int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                NetworkStream stream = client.GetStream();
 
-                // Konvertera inkommande data till en sträng och skriv ut det
-                string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                Console.WriteLine("Meddelande från servern: " + dataReceived);
+                Console.WriteLine("Enter 'register' or 'login':");
+                string userInput = Console.ReadLine();
 
-                Console.WriteLine("Vill du fortsätta (ja/nej)? ");
-                string continueInput = Console.ReadLine();
-                if (continueInput.ToLower() != "ja")
+                if (userInput.ToLower() == "register")
                 {
-                    break;
+                    RegisterUser(stream);
+                }
+                else if (userInput.ToLower() == "login")
+                {
+                    LoginUser(stream);
                 }
 
+                while (true)
+                {
+                    Console.WriteLine("Enter 'send' to broadcast or 'private' for a private message:");
+                    string command = Console.ReadLine();
 
-
-            }// Stäng anslutningen till servern
-            client.Close();
+                    if (command.ToLower() == "send")
+                    {
+                        BroadcastMessage(stream);
+                    }
+                    else if (command.ToLower() == "private")
+                    {
+                        SendPrivateMessage(stream);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
         }
-        catch (Exception e)
+
+        static void RegisterUser(NetworkStream stream)
         {
-            Console.WriteLine("Error: " + e.Message);
+            Console.WriteLine("Enter username:");
+            string username = Console.ReadLine();
+            Console.WriteLine("Enter password:");
+            string password = Console.ReadLine();
+
+            // Send registration data to the server
+            string dataToSend = $"register {username} {password}";
+            SendData(stream, dataToSend);
+        }
+
+        static void LoginUser(NetworkStream stream)
+        {
+            Console.WriteLine("Enter username:");
+            string username = Console.ReadLine();
+            Console.WriteLine("Enter password:");
+            string password = Console.ReadLine();
+
+            // Send login data to the server
+            string dataToSend = $"login {username} {password}";
+            SendData(stream, dataToSend);
+        }
+
+        static void BroadcastMessage(NetworkStream stream)
+        {
+            Console.WriteLine("Enter your message:");
+            string message = Console.ReadLine();
+
+            // Send broadcast message to the server
+            string dataToSend = $"send {message}";
+            SendData(stream, dataToSend);
+        }
+
+        static void SendPrivateMessage(NetworkStream stream)
+        {
+            Console.WriteLine("Enter recipient's username:");
+            string recipient = Console.ReadLine();
+
+            Console.WriteLine("Enter your private message:");
+            string message = Console.ReadLine();
+
+            // Send private message to the server
+            string dataToSend = $"sendPrivate {recipient} {message}";
+            SendData(stream, dataToSend);
+        }
+
+        static void SendData(NetworkStream stream, string data)
+        {
+            // Send the data to the server
+            byte[] dataToSend = Encoding.ASCII.GetBytes(data);
+            stream.Write(dataToSend, 0, dataToSend.Length);
         }
     }
-
-
 }

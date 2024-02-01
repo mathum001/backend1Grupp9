@@ -192,21 +192,39 @@ class Program
     }
 
     static void SendMessage(string message, NetworkStream senderStream)
+{
+    foreach (var kvp in userStreams)
     {
-        foreach (var kvp in userStreams)
+        if (kvp.Value != senderStream)
         {
-            /*  if (kvp.Value != senderStream) */
-            {
-                byte[] dataToSend = Encoding.ASCII.GetBytes(message);
-                kvp.Value.Write(dataToSend, 0, dataToSend.Length);
-            }
+            byte[] dataToSend = Encoding.ASCII.GetBytes(message);
+            kvp.Value.Write(dataToSend, 0, dataToSend.Length);
         }
-
     }
-    static void SendPrivateMessage(string parameters, NetworkStream stream)
+}
+
+static void SendPrivateMessage(string parameters, NetworkStream senderStream)
+{
+    string[] data = parameters.Split(" ");
+    if (data.Length < 2)
     {
-
+        Console.WriteLine("Incorrect private message format.");
+        return;
     }
+
+    string recipient = data[0];
+    string message = parameters.Substring(recipient.Length).Trim();
+
+    if (userStreams.TryGetValue(recipient, out NetworkStream recipientStream))
+    {
+        byte[] dataToSend = Encoding.ASCII.GetBytes($"Private message from {senderStream} : {message}");
+        recipientStream.Write(dataToSend, 0, dataToSend.Length);
+    }
+    else
+    {
+        Console.WriteLine($"User '{recipient}' not found or offline.");
+    }
+}
 
     static IMongoCollection<User> FetchMongoUser()
     {
