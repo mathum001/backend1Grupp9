@@ -1,33 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\Server.csproj": {}
+    "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\Server.csproj": {
+    "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\Server.csproj",
-        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Server\\obj\\",
+        "projectPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\Server.csproj",
+        "packagesPath": "C:\\Users\\Matsjö\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Matsjö\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj": {
-                "projectPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj"
+              "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj"
               }
             }
           }
@@ -67,23 +69,25 @@
         }
       }
     },
-    "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj": {
+    "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj",
+        "projectUniqueName": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\Shared.csproj",
-        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9copy\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\Matsjö\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Matsjö\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "net8.0": {

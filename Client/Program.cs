@@ -24,27 +24,36 @@ namespace Client
                 Console.WriteLine("Enter 'register' or 'login':");
                 string userInput = Console.ReadLine();
 
-                if (userInput.ToLower() == "register")
+                if (userInput?.ToLower() == "register")
                 {
                     RegisterUser(stream);
                 }
-                else if (userInput.ToLower() == "login")
+                else if (userInput?.ToLower() == "login")
                 {
                     LoginUser(stream);
                 }
+
+                //Ny tråd som lyssnar på medd från servern
+                Thread receiveThread = new Thread(() => ReceiveMessages(stream));
+                receiveThread.Start();
 
                 while (true)
                 {
                     Console.WriteLine("Enter 'send' to broadcast or 'private' for a private message:");
                     string command = Console.ReadLine();
 
-                    if (command.ToLower() == "send")
+                    if (command?.ToLower() == "send")
                     {
                         BroadcastMessage(stream);
                     }
-                    else if (command.ToLower() == "private")
+                    else if (command?.ToLower() == "private")
                     {
                         SendPrivateMessage(stream);
+                    }
+                    else
+                    {
+                        client.Close();
+                        break;
                     }
                 }
             }
@@ -106,6 +115,27 @@ namespace Client
             // Send the data to the server
             byte[] dataToSend = Encoding.ASCII.GetBytes(data);
             stream.Write(dataToSend, 0, dataToSend.Length);
+        }
+
+        static void ReceiveMessages(NetworkStream stream)
+        {
+            try
+            {
+                byte[] buffer = new byte[1024];
+                while (true)
+                {
+                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                    if (bytesRead > 0)
+                    {
+                        string message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                        Console.WriteLine(message);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error receiving message from server: " + e.Message);
+            }
         }
     }
 }
