@@ -3,6 +3,8 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using Microsoft.VisualBasic;
 using MongoDB.Bson.Serialization.Attributes;
+using BCrypt.Net;
+
 
 using System;
 using System.Net;
@@ -133,11 +135,14 @@ class Program
             Random random = new Random();
             int randomTal = random.Next(1, 1000);
 
+            // Hash the user's password
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
             User newUser = new User
             {
                 Id = randomTal,
                 UserName = userName,
-                Password = password
+                Password = hashedPassword // Store hashed password in the database
             };
 
             IMongoCollection<User> users = FetchMongoUser();
@@ -210,8 +215,18 @@ class Program
     {
         int id = 0;
         IMongoCollection<User> users = FetchMongoUser();
-        User correctLogin = users.Find(x => x.UserName == userName && x.Password == passWord).FirstOrDefault();
-        id = correctLogin.Id;
+        User user = users.Find(x => x.UserName == userName).FirstOrDefault();
+        
+        if (user != null)
+    {
+        // Verify the entered password with the stored hashed password
+        bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(passWord, user.Password);
+
+        if (isPasswordCorrect)
+        {
+            id = user.Id;
+        }
+    }
         return id;
     }
 

@@ -1,35 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\Server.csproj": {}
+    "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\Server.csproj": {
+    "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\Server.csproj",
-        "packagesPath": "C:\\Users\\Matsjö\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\server\\obj\\",
+        "projectPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Server\\Server.csproj",
+        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Matsjö\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj": {
-                "projectPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj"
+              "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Shared\\Shared.csproj"
               }
             }
           }
@@ -44,6 +42,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.23.1, )"
@@ -69,25 +71,23 @@
         }
       }
     },
-    "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj": {
+    "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj",
+        "projectUniqueName": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\Shared.csproj",
-        "packagesPath": "C:\\Users\\Matsjö\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matsjö\\Documents\\GitHub\\backend1Grupp9\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\marcu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marcu\\Documents\\GitHub\\backend1Grupp9new\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Matsjö\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\marcu\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
