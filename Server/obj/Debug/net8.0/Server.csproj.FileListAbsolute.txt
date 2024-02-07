@@ -130,3 +130,4 @@ C:\Users\marcu\Documents\GitHub\backend1Grupp9new\Server\obj\Debug\net8.0\Server
 C:\Users\marcu\Documents\GitHub\backend1Grupp9new\Server\obj\Debug\net8.0\Server.genruntimeconfig.cache
 C:\Users\marcu\Documents\GitHub\backend1Grupp9new\Server\obj\Debug\net8.0\ref\Server.dll
 C:\Users\marcu\Documents\GitHub\backend1Grupp9new\Server\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Matsjö\Documents\GitHub\backend1Grupp9\server\bin\Debug\net8.0\BCrypt.Net-Next.dll

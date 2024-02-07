@@ -216,17 +216,17 @@ class Program
         int id = 0;
         IMongoCollection<User> users = FetchMongoUser();
         User user = users.Find(x => x.UserName == userName).FirstOrDefault();
-        
-        if (user != null)
-    {
-        // Verify the entered password with the stored hashed password
-        bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(passWord, user.Password);
 
-        if (isPasswordCorrect)
+        if (user != null)
         {
-            id = user.Id;
+            // Verify the entered password with the stored hashed password
+            bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(passWord, user.Password);
+
+            if (isPasswordCorrect)
+            {
+                id = user.Id;
+            }
         }
-    }
         return id;
     }
 
@@ -338,6 +338,18 @@ class Program
 
         var filter = Builders<Messages>.Filter.Eq(message => message.UserName, username);
         var update = Builders<Messages>.Update.Push(message => message.UserMessages, message);
+
+        int maxMessages = 29;
+        var userMessages = FetchMongoMessages(username).UserMessages;
+        if (userMessages.Count > maxMessages)
+        {
+            var oldestMessage = userMessages.FirstOrDefault();
+
+            messageCollection.UpdateOne(
+                Builders<Messages>.Filter.Eq("UserName", username),
+                Builders<Messages>.Update.Pull("UserMessages", oldestMessage)
+            );
+        }
 
         messageCollection.UpdateOne(filter, update);
 
